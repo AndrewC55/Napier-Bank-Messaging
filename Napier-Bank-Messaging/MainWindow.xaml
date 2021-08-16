@@ -6,7 +6,27 @@
         xmlns:local="clr-namespace:Napier_Bank_Messaging"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Label>Andrew Clark</Label>
+    <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label>NAPIER BANK MESSENGER</Label>
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="5,0,0,0">
+            <Label x:Name="lblHeader">Header</Label>
+            <TextBox x:Name="txtHeader"/>
+            <Label x:Name="lblBody">Body</Label>
+            <TextBox x:Name="txtBody" Height="100"/>
+            <Button x:Name="btnProcess" Click="btnProcess_Click">Process</Button>
+            <Label x:Name="lblHeaderDisplay"/>
+            <Label x:Name="lblBodyDisplay" Height="100"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -24,5 +24,11 @@ namespace Napier_Bank_Messaging
         {
             InitializeComponent();
         }
+
+        private void btnProcess_Click(object sender, RoutedEventArgs e)
+        {
+            lblHeaderDisplay.Content = txtHeader.Text;
+            lblBodyDisplay.Content = txtBody.Text;
+        }
     }
 }
