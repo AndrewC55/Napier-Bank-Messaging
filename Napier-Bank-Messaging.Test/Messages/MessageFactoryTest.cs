@@ -7,10 +7,10 @@ namespace Napier_Bank_Messaging.Test
     public class MessageFactoryTest
     {
         [TestMethod]
-        public void DoesReturnMessageClass()
+        public void DoesReturnSmsClass()
         {
             MessageFactory messageFactory = new MessageFactory();
-            Message message = messageFactory.Factory();
+            Message message = messageFactory.Factory('S');
 
             message.MessageHeader = "E123456789";
             message.MessageBody = "Blah";
