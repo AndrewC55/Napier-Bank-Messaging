@@ -16,9 +16,12 @@ namespace Napier_Bank_Messaging.Messages
             set => _messageType = value;
         }
 
-        public Message Factory()
+        public Message Factory(char type)
         {
-            return new Message();
+            return type switch
+            {
+                'S' => new SmsMessage()
+            };
         }
     }
 }

@@ -22,8 +22,8 @@ namespace Napier_Bank_Messaging.Messages
             set => _messageBody = value;
         }
 
-        public abstract void Sanatise();
+        public abstract void Sanatise(string body);
 
-        public abstract void Format();
+        public abstract bool Format(string body);
     }
 }
