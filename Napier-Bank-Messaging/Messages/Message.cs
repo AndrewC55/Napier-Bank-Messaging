@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Napier_Bank_Messaging.Messages
 {
-    public class Message
+    public abstract class Message
     {
         private string _messageHeader, _messageBody;
 
@@ -22,7 +22,8 @@ namespace Napier_Bank_Messaging.Messages
             set => _messageBody = value;
         }
 
-        //public abstract void Sanatise();
-        //public abstract void Format();
+        public abstract void Sanatise(string body);
+
+        public abstract bool Format(string body);
     }
 }
