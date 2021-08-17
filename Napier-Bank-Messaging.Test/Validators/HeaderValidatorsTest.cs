@@ -33,5 +33,21 @@ namespace Napier_Bank_Messaging.Test
             HeaderValidator headerValidator = new HeaderValidator();
             Assert.IsFalse(headerValidator.isMessageTypeValid("1234567890"));
         }
+
+        [TestMethod]
+        public void IsMessageFormatValid()
+        {
+            HeaderValidator headerValidator = new HeaderValidator();
+            Assert.IsTrue(headerValidator.isMessageFormatCorrect("E123456789"));
+        }
+
+        [TestMethod]
+        public void IsMessageFormatNotValid()
+        {
+            HeaderValidator headerValidator = new HeaderValidator();
+            Assert.IsFalse(headerValidator.isMessageFormatCorrect("E1234E6789"));
+        }
+
     }
 }
+
