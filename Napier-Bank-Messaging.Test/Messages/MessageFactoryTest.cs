@@ -18,5 +18,18 @@ namespace Napier_Bank_Messaging.Test
             Assert.AreEqual(message.MessageHeader, "E123456789");
             Assert.AreEqual(message.MessageBody, "Blah");
         }
+
+        [TestMethod]
+        public void DoesReturnTweetClass()
+        {
+            MessageFactory messageFactory = new MessageFactory();
+            Message message = messageFactory.Factory('T');
+
+            message.MessageHeader = "E123456789";
+            message.MessageBody = "Blah";
+
+            Assert.AreEqual(message.MessageHeader, "E123456789");
+            Assert.AreEqual(message.MessageBody, "Blah");
+        }
     }
 }
