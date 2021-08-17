@@ -10,7 +10,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="388.08" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
 
         <Label>NAPIER BANK MESSENGER</Label>
-        <Image Height="100" Width="100" Grid.Row="1">
+        <Image Height="100" Width="100" Grid.Row="1" Margin="5,-275,5,5">
             <Image.Source>
                 <BitmapImage UriSource="/images/bankLogo.png"/>
             </Image.Source>
@@ -28,10 +28,10 @@
             <Label x:Name="lblHeader">Header</Label>
             <TextBox x:Name="txtHeader"/>
             <Label x:Name="lblBody">Body</Label>
-            <TextBox x:Name="txtBody" Height="100"/>
+            <TextBox x:Name="txtBody" Height="100" AcceptsReturn="True"/>
             <Button x:Name="btnProcess" Click="btnProcess_Click">Process</Button>
             <Label x:Name="lblHeaderDisplay"/>
-            <Label x:Name="lblBodyDisplay" Height="100"/>
+            <Label x:Name="lblBodyDisplay"/>
         </StackPanel>
     </Grid>
 </Window>

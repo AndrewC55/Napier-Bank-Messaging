@@ -27,8 +27,23 @@ namespace Napier_Bank_Messaging
 
         private void btnProcess_Click(object sender, RoutedEventArgs e)
         {
+            String type;
+            if (txtHeader.Text.Contains("S"))
+            {
+                type = "SMS";
+            } else if (txtHeader.Text.Contains("E"))
+            {
+                type = "Email";
+            } else if (txtHeader.Text.Contains("T"))
+            {
+                type = "Tweet";
+            } else
+            {
+                type = "False";
+            }
+
             lblHeaderDisplay.Content = txtHeader.Text;
-            lblBodyDisplay.Content = txtBody.Text;
+            lblBodyDisplay.Content = type + "\n" + txtBody.Text;
         }
     }
 }
