@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Napier_Bank_Messaging.Validators;
+using Napier_Bank_Messaging.Messages;
 
 namespace Napier_Bank_Messaging
 {
@@ -47,8 +48,12 @@ namespace Napier_Bank_Messaging
                 headerDisplay = "Sorry, message must be in the format of message type followed by 9 numbers (e.g. E123456789)";
             }
 
-            lblHeaderDisplay.Content = headerDisplay;
-            lblBodyDisplay.Content = bodyDisplay;
+            Message message = new Message();
+            message.MessageHeader = headerDisplay;
+            message.MessageBody = bodyDisplay;
+
+            lblHeaderDisplay.Content = message.MessageHeader;
+            lblBodyDisplay.Content = message.MessageBody;
         }
     }
 }
