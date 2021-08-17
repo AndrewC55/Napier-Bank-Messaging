@@ -48,7 +48,8 @@ namespace Napier_Bank_Messaging
                 headerDisplay = "Sorry, message must be in the format of message type followed by 9 numbers (e.g. E123456789)";
             }
 
-            Message message = new Message();
+            MessageFactory messageFactory = new MessageFactory();
+            Message message = messageFactory.Factory();
             message.MessageHeader = headerDisplay;
             message.MessageBody = bodyDisplay;
 

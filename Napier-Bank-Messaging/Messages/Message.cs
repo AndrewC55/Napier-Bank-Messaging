@@ -8,7 +8,7 @@ namespace Napier_Bank_Messaging.Messages
 {
     public class Message
     {
-        public string _messageHeader, _messageBody;
+        private string _messageHeader, _messageBody;
 
         public string MessageHeader
         {
