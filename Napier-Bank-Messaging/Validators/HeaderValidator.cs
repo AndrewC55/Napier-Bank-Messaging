@@ -38,9 +38,10 @@ namespace Napier_Bank_Messaging.Validators
         public bool isMessageFormatCorrect(string header)
         {
             bool isValid = true;
-            for (int i = 1; i < HeaderLength + 1; i++)
+            header = header.Remove(0, 1);
+            foreach (char c in header)
             {
-                if (!(header[i] >= 0 && header[i] <= 9))
+                if (!(c >= '0' && c <= '9'))
                 {
                     return !isValid;
                 }

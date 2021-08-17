@@ -37,6 +37,9 @@ namespace Napier_Bank_Messaging
             } else if (!headerValidator.isMessageTypeValid(txtHeader.Text))
             {
                 headerDisplay = "Sorry, message ID must constain a message type ('S' = 'SMS', 'E' = 'Email', 'T' = 'Tweet')";
+            } else if (!headerValidator.isMessageFormatCorrect(txtHeader.Text))
+            {
+                headerDisplay = "Sorry, message must be in the format of message type followed by 9 numbers (e.g. E123456789)";
             }
 
             lblHeaderDisplay.Content = headerDisplay;
