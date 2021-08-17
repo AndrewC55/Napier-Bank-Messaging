@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Napier_Bank_Messaging</RootNamespace>
+  </PropertyGroup>
+
+</Project>
