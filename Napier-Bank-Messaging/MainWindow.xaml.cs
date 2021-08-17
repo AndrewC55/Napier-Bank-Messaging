@@ -28,17 +28,22 @@ namespace Napier_Bank_Messaging
 
         private void btnProcess_Click(object sender, RoutedEventArgs e)
         {
+            // define string values for values of text boxes
             string headerDisplay = txtHeader.Text,  bodyDisplay = txtBody.Text;
+            // create instance of header validator
             HeaderValidator headerValidator = new HeaderValidator();
 
             if (!headerValidator.IsHeaderLengthValid(txtHeader.Text))
             {
+                // if length of message ID is wrong then message is changed to error message
                 headerDisplay = "Sorry, message ID must be 10 characters long, please try again";
             } else if (!headerValidator.isMessageTypeValid(txtHeader.Text))
             {
+                // if message ID doesn't contain a message type then message is changed to error message
                 headerDisplay = "Sorry, message ID must constain a message type ('S' = 'SMS', 'E' = 'Email', 'T' = 'Tweet')";
             } else if (!headerValidator.isMessageFormatCorrect(txtHeader.Text))
             {
+                // if message ID is wrongly formatted then message is changed to error message
                 headerDisplay = "Sorry, message must be in the format of message type followed by 9 numbers (e.g. E123456789)";
             }
 
