@@ -13,6 +13,26 @@ namespace Napier_Bank_Messaging.Validators
         const string EMAIL     = "E";
         const string Tweet     = "T";
 
-        static Boolean
+        public bool IsHeaderLengthValid(string header)
+        {
+            bool isValid = true;
+            if (header.Length != HeaderLength)
+            {
+                return !isValid;
+            }
+
+            return isValid;
+        }
+
+        public bool isMessageTypeValid(string header)
+        {
+            bool isValid = true;
+            if ((!header.Contains(Sms)) && (!header.Contains(EMAIL)) && (!header.Contains(Tweet)))
+            {
+                return !isValid;
+            }
+
+            return isValid;
+        }
     }
 }

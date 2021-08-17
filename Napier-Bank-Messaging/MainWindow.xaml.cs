@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Napier_Bank_Messaging.Validators;
 
 namespace Napier_Bank_Messaging
 {
@@ -27,23 +28,19 @@ namespace Napier_Bank_Messaging
 
         private void btnProcess_Click(object sender, RoutedEventArgs e)
         {
-            String type;
-            if (txtHeader.Text.Contains("S"))
+            string headerDisplay = txtHeader.Text,  bodyDisplay = txtBody.Text;
+            HeaderValidator headerValidator = new HeaderValidator();
+
+            if (!headerValidator.IsHeaderLengthValid(txtHeader.Text))
             {
-                type = "SMS";
-            } else if (txtHeader.Text.Contains("E"))
+                headerDisplay = "Sorry, message ID must be 10 characters long, please try again";
+            } else if (!headerValidator.isMessageTypeValid(txtHeader.Text))
             {
-                type = "Email";
-            } else if (txtHeader.Text.Contains("T"))
-            {
-                type = "Tweet";
-            } else
-            {
-                type = "False";
+                headerDisplay = "Sorry, message ID must constain a message type ('S' = 'SMS', 'E' = 'Email', 'T' = 'Tweet')";
             }
 
-            lblHeaderDisplay.Content = txtHeader.Text;
-            lblBodyDisplay.Content = type + "\n" + txtBody.Text;
+            lblHeaderDisplay.Content = headerDisplay;
+            lblBodyDisplay.Content = bodyDisplay;
         }
     }
 }
