@@ -9,9 +9,9 @@ namespace Napier_Bank_Messaging.Validators
     public class HeaderValidator
     {
         const int HeaderLength = 10;
-        const string Sms       = "S";
-        const string EMAIL     = "E";
-        const string Tweet     = "T";
+        const char Sms         = 'S';
+        const char EMAIL       = 'E';
+        const char Tweet       = 'T';
 
         public bool IsHeaderLengthValid(string header)
         {
@@ -27,9 +27,23 @@ namespace Napier_Bank_Messaging.Validators
         public bool isMessageTypeValid(string header)
         {
             bool isValid = true;
-            if ((!header.Contains(Sms)) && (!header.Contains(EMAIL)) && (!header.Contains(Tweet)))
+            if ((header[0] != Sms) && (header[0] != EMAIL) && (header[0] != Tweet))
             {
                 return !isValid;
+            }
+
+            return isValid;
+        }
+
+        public bool isMessageFormatCorrect(string header)
+        {
+            bool isValid = true;
+            for (int i = 1; i < HeaderLength + 1; i++)
+            {
+                if (!(header[i] >= 0 && header[i] <= 9))
+                {
+                    return !isValid;
+                }
             }
 
             return isValid;
