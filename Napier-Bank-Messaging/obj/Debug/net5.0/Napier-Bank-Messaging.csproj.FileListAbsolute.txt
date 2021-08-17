@@ -1,0 +1,5 @@
+C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0\Napier-Bank-Messaging.csproj.AssemblyReference.cache
+C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0\Napier-Bank-Messaging.GeneratedMSBuildEditorConfig.editorconfig
+C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0\Napier-Bank-Messaging.AssemblyInfoInputs.cache
+C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0\Napier-Bank-Messaging.AssemblyInfo.cs
+C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0\Napier-Bank-Messaging.csproj.CoreCompileInputs.cache

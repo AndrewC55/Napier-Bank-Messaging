@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Napier_Bank_Messaging.Validators;
 
 namespace Napier_Bank_Messaging
 {
@@ -27,23 +28,27 @@ namespace Napier_Bank_Messaging
 
         private void btnProcess_Click(object sender, RoutedEventArgs e)
         {
-            String type;
-            if (txtHeader.Text.Contains("S"))
+            // define string values for values of text boxes
+            string headerDisplay = txtHeader.Text,  bodyDisplay = txtBody.Text;
+            // create instance of header validator
+            HeaderValidator headerValidator = new HeaderValidator();
+
+            if (!headerValidator.IsHeaderLengthValid(txtHeader.Text))
             {
-                type = "SMS";
-            } else if (txtHeader.Text.Contains("E"))
+                // if length of message ID is wrong then message is changed to error message
+                headerDisplay = "Sorry, message ID must be 10 characters long, please try again";
+            } else if (!headerValidator.isMessageTypeValid(txtHeader.Text))
             {
-                type = "Email";
-            } else if (txtHeader.Text.Contains("T"))
+                // if message ID doesn't contain a message type then message is changed to error message
+                headerDisplay = "Sorry, message ID must constain a message type ('S' = 'SMS', 'E' = 'Email', 'T' = 'Tweet')";
+            } else if (!headerValidator.isMessageFormatCorrect(txtHeader.Text))
             {
-                type = "Tweet";
-            } else
-            {
-                type = "False";
+                // if message ID is wrongly formatted then message is changed to error message
+                headerDisplay = "Sorry, message must be in the format of message type followed by 9 numbers (e.g. E123456789)";
             }
 
-            lblHeaderDisplay.Content = txtHeader.Text;
-            lblBodyDisplay.Content = type + "\n" + txtBody.Text;
+            lblHeaderDisplay.Content = headerDisplay;
+            lblBodyDisplay.Content = bodyDisplay;
         }
     }
 }
