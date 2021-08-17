@@ -14,17 +14,22 @@ namespace Napier_Bank_Messaging.Messages
 
         public override bool Format(string body)
         {
-            return IsSenderCorrect(body) || IsCharacterLengthCorrect(body);
+            List<string> listBody = body.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
+            return IsSenderCorrect(listBody[0]) && IsCharacterLengthCorrect(listBody[1]);
         }
 
         private bool IsSenderCorrect(string body)
         {
             bool isValid = true;
 
-            // now foreach through each char
-            for (int i = 0; i < 11; i++)
+            if (body.Length != 11)
             {
-                if (!(body[i] >= '0' && body[i] <= 9))
+                return !isValid;
+            }
+
+            foreach (char c in body)
+            {
+                if (!(c >= '0' && c <= '9'))
                 {
                     return !isValid;
                 }
@@ -37,7 +42,6 @@ namespace Napier_Bank_Messaging.Messages
         private static bool IsCharacterLengthCorrect(string body)
         {
             bool isValid = true;
-            body = body.Remove(0, 11);
 
             if (body.Length > 140)
             {
