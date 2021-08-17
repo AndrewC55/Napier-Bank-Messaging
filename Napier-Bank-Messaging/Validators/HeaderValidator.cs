@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Napier_Bank_Messaging.Validators
 {
-    class HeaderValidator
+    public class HeaderValidator
     {
         const int HeaderLength = 10;
         const string Sms       = "S";
