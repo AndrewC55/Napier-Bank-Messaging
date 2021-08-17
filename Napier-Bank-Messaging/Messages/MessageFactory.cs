@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Napier_Bank_Messaging.Messages
 {
-    class MessageFactory
+    public class MessageFactory
     {
         private string _messageType;
 
