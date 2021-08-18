@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Napier_Bank_Messaging.Validators;
 using Napier_Bank_Messaging.Messages;
+using Napier_Bank_Messaging.Tools;
 
 namespace Napier_Bank_Messaging
 {
@@ -50,6 +51,7 @@ namespace Napier_Bank_Messaging
 
             MessageFactory messageFactory = new MessageFactory();
             Message message = messageFactory.Factory(headerDisplay[0]);
+            JsonAPI jsonAPI = new JsonAPI();
 
             if (!message.Format(bodyDisplay))
             {
@@ -57,6 +59,7 @@ namespace Napier_Bank_Messaging
             } else
             {
                 message.Sanatise(headerDisplay, bodyDisplay);
+                jsonAPI.ToJson(message);
             }
 
             lblHeaderDisplay.Content = message.MessageHeader;
