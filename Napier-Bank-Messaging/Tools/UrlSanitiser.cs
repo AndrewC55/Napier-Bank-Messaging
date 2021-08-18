@@ -12,11 +12,17 @@ namespace Napier_Bank_Messaging.Tools
     {
         private const string FilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\QuarantineList.txt";
 
-        public string Sanatise(List<string> body)
+        public string Sanatise(List<string> body, bool isSir)
         {
-            List<string> messageBody = body[2].Split(" ").ToList();
+            string mainMessage = isSir ? body[4] : body[2];
+            List<string> messageBody = mainMessage.Split(" ").ToList();
             string sanitisedBody = body[0] + "\n" + body[1] + "\n";
             Regex regex = new Regex(@"^(http|https|ftp|)\://|[a-zA-Z0-9\-\.]+\.[a-zA-Z](:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~])*[^\.\,\)\(\s]$");
+
+            if (isSir)
+            {
+                sanitisedBody = sanitisedBody + "\n" + body[2] + "\n" + body[3] + "\n";
+            }
 
             foreach (string message in messageBody)
             {
@@ -35,7 +41,7 @@ namespace Napier_Bank_Messaging.Tools
 
         private void WriteToQuarantineList(string url)
         {
-            File.AppendAllText(FilePath, url);
+            File.AppendAllText(FilePath, url + "\n");
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Napier_Bank_Messaging.Tools
         public void ToJson(Message message)
         {
             string jsonSerialized = JsonSerializer.Serialize(message);
-            File.WriteAllText(FilePath, jsonSerialized);
+            File.AppendAllText(FilePath, jsonSerialized + "\n");
         }
     }
 }

@@ -1,1 +1,12 @@
-{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSubject2\n \u003CURL Quarantined\u003E"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSubject2\n \u003CURL Quarantined\u003E"}{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSubject\n www"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\n Sort Code: 99-99-99"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\n Sort Code: 99-99-99"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\n Sort Code: 99-99-99"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSubject\n www"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSubject\n www"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\n Sort Code:"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\n Sort Code:"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\n\nSort Code:\nNature of Incident: wwwww"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\n\nSort Code:\nNature of Incident:\n wwwwwww"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSubject\n wwwwwww"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSubject\n wwwwwww \u003CURL Quarantined\u003E"}

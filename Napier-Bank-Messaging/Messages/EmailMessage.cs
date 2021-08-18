@@ -17,14 +17,32 @@ namespace Napier_Bank_Messaging.Messages
         public override void Sanatise(string header, string body)
         {
             UrlSanitiser urlSanitiser = new UrlSanitiser();
+            SirList sirList = new SirList();
+            List<string> listBody = GetFormattedListBody(body);
+
+            if (IsEmailSir(listBody[1]))
+            {
+                sirList.WriteToSirList(listBody[2], listBody[3]);
+            }
+
             MessageHeader = header;
-            MessageBody = urlSanitiser.Sanatise(GetFormattedListBody(body));
+            MessageBody = urlSanitiser.Sanatise(listBody, IsEmailSir(listBody[1]));
         }
 
         public override bool Format(string body)
         {
             List<string> listBody = GetFormattedListBody(body);
+            if (IsEmailSir(listBody[1]))
+            {
+                return IsSenderCorrect(listBody[0]) && IsSubjectLengthCorrect(listBody[1]) && IsSortCodeCorrect(listBody[2]) && IsNatureOfIncidentCorrect(listBody[3]) && IsCharacterLengthCorrect(listBody[4]);
+            }
             return IsSenderCorrect(listBody[0]) && IsSubjectLengthCorrect(listBody[1]) && IsCharacterLengthCorrect(listBody[2]);
+        }
+
+        private bool IsEmailSir(string subject)
+        {
+            subject = subject.Substring(0, 3);
+            return subject == "SIR" ? true : false;
         }
 
         private bool IsSenderCorrect(string body)
@@ -36,6 +54,38 @@ namespace Napier_Bank_Messaging.Messages
         private bool IsSubjectLengthCorrect(string subject)
         {
             return subject.Length > MaximumSubjectCharacters ? false : true;
+        }
+
+        private bool IsSortCodeCorrect(string sortCode)
+        {
+            MessageHeader = "sort";
+            Regex regex = new Regex(@"/^(?!(?:0{6}|00-00-00))(?:\d{6}|\d\d-\d\d-\d\d)$");
+            if (sortCode.Substring(0, 10) == "Sort Code:")
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsNatureOfIncidentCorrect(string natureOfIncident)
+        {
+            MessageHeader = "incident";
+            SirList sirList = new SirList();
+            if (natureOfIncident.Substring(0, 18) == "Nature of Incident")
+            {
+                return true;
+            }
+
+            /*foreach (string incident in sirList.GetNatureOfIncidentsValues())
+            {
+                if (incident == natureOfIncident.Substring())
+                {
+                    return true;
+                }
+            }*/
+
+            return false;
         }
 
         private static bool IsCharacterLengthCorrect(string body)
