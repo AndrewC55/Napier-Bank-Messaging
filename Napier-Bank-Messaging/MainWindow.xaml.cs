@@ -34,15 +34,15 @@ namespace Napier_Bank_Messaging
             // create instance of header validator
             HeaderValidator headerValidator = new HeaderValidator();
 
-            if (!headerValidator.IsHeaderLengthValid(txtHeader.Text))
+            if (!headerValidator.IsHeaderLengthValid(headerDisplay))
             {
                 // if length of message ID is wrong then message is changed to error message
                 headerDisplay = "Sorry, message ID must be 10 characters long, please try again";
-            } else if (!headerValidator.isMessageTypeValid(txtHeader.Text))
+            } else if (!headerValidator.isMessageTypeValid(headerDisplay))
             {
                 // if message ID doesn't contain a message type then message is changed to error message
                 headerDisplay = "Sorry, message ID must constain a message type ('S' = 'SMS', 'E' = 'Email', 'T' = 'Tweet')";
-            } else if (!headerValidator.isMessageFormatCorrect(txtHeader.Text))
+            } else if (!headerValidator.isMessageFormatCorrect(headerDisplay))
             {
                 // if message ID is wrongly formatted then message is changed to error message
                 headerDisplay = "Sorry, message must be in the format of message type followed by 9 numbers (e.g. E123456789)";
@@ -50,13 +50,13 @@ namespace Napier_Bank_Messaging
 
             MessageFactory messageFactory = new MessageFactory();
             Message message = messageFactory.Factory(headerDisplay[0]);
-            if (!message.Format(txtBody.Text))
+
+            if (!message.Format(bodyDisplay))
             {
                 message.MessageBody = "Sorry there was an error with your formatting, please try again";
             } else
             {
-                message.MessageHeader = headerDisplay;
-                message.Sanatise(bodyDisplay);
+                message.Sanatise(headerDisplay, bodyDisplay);
             }
 
             lblHeaderDisplay.Content = message.MessageHeader;

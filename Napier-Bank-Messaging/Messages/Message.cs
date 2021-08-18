@@ -21,8 +21,13 @@ namespace Napier_Bank_Messaging.Messages
             get => _messageBody;
             set => _messageBody = value;
         }
+        public List<string> GetFormattedListBody(string body)
+        {
+            List<string> listBody = body.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
+            return listBody;
+        }
 
-        public abstract void Sanatise(string body);
+        public abstract void Sanatise(string header, string body);
 
         public abstract bool Format(string body);
     }

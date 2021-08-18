@@ -9,14 +9,14 @@ namespace Napier_Bank_Messaging.Messages
 {
     public class SmsMessage : Message
     {
-        public override void Sanatise(string body)
+        public override void Sanatise(string header, string body)
         {
             TextSpeakSanitiser textSpeakSanitiser = new TextSpeakSanitiser();
-            List<string> listBody = body.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
             List<TextSpeak> wordsList = textSpeakSanitiser.GetTextSpeakerValues();
+            List<string> listBody = GetFormattedListBody(body);
             List<string> messageBody = listBody[1].Split(" ").ToList();
             Dictionary<string, string> words = new Dictionary<string, string>();
-            string sanitisedBody = "";
+            string sanitisedBody = listBody[0] + "\n";
 
             foreach (TextSpeak word in wordsList)
             {
@@ -34,12 +34,13 @@ namespace Napier_Bank_Messaging.Messages
                 sanitisedBody = sanitisedBody + " " + message;
             }
 
+            MessageHeader = header;
             MessageBody = sanitisedBody;
         }
 
         public override bool Format(string body)
         {
-            List<string> listBody = body.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
+            List<string> listBody = GetFormattedListBody(body);
             return IsSenderCorrect(listBody[0]) && IsCharacterLengthCorrect(listBody[1]);
         }
 

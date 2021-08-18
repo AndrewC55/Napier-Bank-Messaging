@@ -10,13 +10,15 @@ namespace Napier_Bank_Messaging.Messages
 {
     public class EmailMessage : Message
     {
-        public override void Sanatise(string body)
+        public override void Sanatise(string header, string body)
         {
+            MessageHeader = header;
+            MessageBody = body;
         }
 
         public override bool Format(string body)
         {
-            List<string> listBody = body.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
+            List<string> listBody = GetFormattedListBody(body);
             return IsSenderCorrect(listBody[0]) && IsSubjectCorrect(listBody[1]) && IsCharacterLengthCorrect(listBody[2]);
         }
 
