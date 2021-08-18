@@ -9,7 +9,7 @@ namespace Napier_Bank_Messaging.Test
         [TestMethod]
         public void DoesMessageHeaderWork()
         {
-            Message message = new SmsMessage();
+            Message message = new EmailMessage();
             message.MessageHeader = "E123456789";
             Assert.AreEqual(message.MessageHeader, "E123456789");
         }
@@ -17,7 +17,7 @@ namespace Napier_Bank_Messaging.Test
         [TestMethod]
         public void DoesMessageBodyWork()
         {
-            Message message = new SmsMessage();
+            Message message = new EmailMessage();
             message.MessageBody = "blah";
             Assert.AreEqual(message.MessageBody, "blah");
         }
@@ -25,8 +25,8 @@ namespace Napier_Bank_Messaging.Test
         [TestMethod]
         public void DoesFormatReturnFalseWhenCharacterCountIsExceeded()
         {
-            Message message = new SmsMessage();
-            string exceededChars = "andrew@test.com\n" +
+            Message message = new EmailMessage();
+            string body = "andrew@test.com\n" +
                 "Subject\n" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
@@ -48,30 +48,30 @@ namespace Napier_Bank_Messaging.Test
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-            Assert.IsFalse(message.Format(exceededChars));
+            Assert.IsFalse(message.Format(body));
         }
 
         [TestMethod]
         public void DoesFormatReturnFalseWhenSenderIsWronglyFormatted()
         {
-            Message message = new SmsMessage();
-            string exceededChars = "andrew.test.com\n" +
+            Message message = new EmailMessage();
+            string body = "andrew.test.com\n" +
                 "Subject\n" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-            Assert.IsFalse(message.Format(exceededChars));
+            Assert.IsFalse(message.Format(body));
         }
 
         [TestMethod]
         public void DoesFormatReturnTrueFormatIsCorrect()
         {
-            Message message = new SmsMessage();
-            string exceededChars = "andrew@test.com\n" +
-                "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\n" +
+            Message message = new EmailMessage();
+            string body = "andrew@test.com\n" +
+                "Subject\n" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-            Assert.IsFalse(message.Format(exceededChars));
+            Assert.IsFalse(message.Format(body));
         }
     }
 }

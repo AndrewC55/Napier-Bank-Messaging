@@ -9,7 +9,7 @@ namespace Napier_Bank_Messaging.Test
         [TestMethod]
         public void DoesMessageHeaderWork()
         {
-            Message message = new SmsMessage();
+            Message message = new TweetMessage();
             message.MessageHeader = "S123456789";
             Assert.AreEqual(message.MessageHeader, "S123456789");
         }
@@ -17,7 +17,7 @@ namespace Napier_Bank_Messaging.Test
         [TestMethod]
         public void DoesMessageBodyWork()
         {
-            Message message = new SmsMessage();
+            Message message = new TweetMessage();
             message.MessageBody = "blah";
             Assert.AreEqual(message.MessageBody, "blah");
         }
@@ -25,8 +25,10 @@ namespace Napier_Bank_Messaging.Test
         [TestMethod]
         public void DoesFormatReturnFalseWhenCharacterCountIsExceeded()
         {
-            Message message = new SmsMessage();
+            Message message = new TweetMessage();
             string exceededChars = "@andrew\n" +
+                "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
+                "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
@@ -36,7 +38,7 @@ namespace Napier_Bank_Messaging.Test
         [TestMethod]
         public void DoesFormatReturnFalseWhenSenderIsWronglyFormatted()
         {
-            Message message = new SmsMessage();
+            Message message = new TweetMessage();
             string exceededChars = "andrew\n" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
@@ -47,9 +49,8 @@ namespace Napier_Bank_Messaging.Test
         [TestMethod]
         public void DoesFormatReturnTrueFormatIsCorrect()
         {
-            Message message = new SmsMessage();
+            Message message = new TweetMessage();
             string exceededChars = "@andrew\n" +
-                "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
             Assert.IsFalse(message.Format(exceededChars));
         }
