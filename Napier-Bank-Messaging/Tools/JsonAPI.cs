@@ -10,9 +10,10 @@ using Napier_Bank_Messaging.Messages;
 
 namespace Napier_Bank_Messaging.Tools
 {
-    class JsonAPI
+    public class JsonAPI
     {
         private const string FilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\JsonFile.txt";
+
         public void ToJson(Message message)
         {
             string jsonSerialized = JsonSerializer.Serialize(message);

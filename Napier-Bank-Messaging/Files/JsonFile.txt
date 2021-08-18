@@ -1,1 +1,1 @@
-{"MessageHeader":"T123456789","MessageBody":"@andrew\n This is an SMS AAP \u003CAlways a pleasure\u003E"}
+{"MessageHeader":"S123456789","MessageBody":"12345678911\n This is an SMS message"}
