@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Napier_Bank_Messaging.Tools
 {
     public class UrlSanitiser
     {
+        private const string FilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\QuarantineList.txt";
+
         public string Sanatise(List<string> body)
         {
             List<string> messageBody = body[2].Split(" ").ToList();
@@ -20,6 +23,7 @@ namespace Napier_Bank_Messaging.Tools
                 if (regex.IsMatch(message))
                 {
                     sanitisedBody = sanitisedBody + " <URL Quarantined>";
+                    WriteToQuarantineList(message);
                     continue;
                 }
 
@@ -27,6 +31,11 @@ namespace Napier_Bank_Messaging.Tools
             }
 
             return sanitisedBody;
+        }
+
+        private void WriteToQuarantineList(string url)
+        {
+            File.AppendAllText(FilePath, url);
         }
     }
 }
