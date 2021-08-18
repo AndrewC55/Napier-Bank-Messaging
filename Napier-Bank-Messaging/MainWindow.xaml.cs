@@ -65,5 +65,12 @@ namespace Napier_Bank_Messaging
             lblHeaderDisplay.Content = message.MessageHeader;
             lblBodyDisplay.Content = message.MessageBody;
         }
+
+        private void btnEnd_Click(object sender, RoutedEventArgs e)
+        {
+            SirListWindow sirListWindow = new SirListWindow();
+            sirListWindow.Show();
+            Close();
+        }
     }
 }

@@ -20,3 +20,5 @@ C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0-wind
 C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0-windows\ref\Napier-Bank-Messaging.dll
 C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0-windows\Napier-Bank-Messaging.pdb
 C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0-windows\Napier-Bank-Messaging.genruntimeconfig.cache
+C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0-windows\SirListWindow.g.cs
+C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0-windows\SirListWindow.baml
