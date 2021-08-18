@@ -12,30 +12,8 @@ namespace Napier_Bank_Messaging.Messages
         public override void Sanatise(string header, string body)
         {
             TextSpeakSanitiser textSpeakSanitiser = new TextSpeakSanitiser();
-            List<TextSpeak> wordsList = textSpeakSanitiser.GetTextSpeakerValues();
-            List<string> listBody = GetFormattedListBody(body);
-            List<string> messageBody = listBody[1].Split(" ").ToList();
-            Dictionary<string, string> words = new Dictionary<string, string>();
-            string sanitisedBody = listBody[0] + "\n";
-
-            foreach (TextSpeak word in wordsList)
-            {
-                words.Add(word.Abbreviation, word.Phrase);
-            }
-
-            foreach (string message in messageBody)
-            {
-                if (words.ContainsKey(message))
-                {
-                    sanitisedBody = sanitisedBody + " " + message + " <" + words[message] + ">";
-                    continue;
-                }
-
-                sanitisedBody = sanitisedBody + " " + message;
-            }
-
             MessageHeader = header;
-            MessageBody = sanitisedBody;
+            MessageBody = textSpeakSanitiser.Sanatise(GetFormattedListBody(body));
         }
 
         public override bool Format(string body)

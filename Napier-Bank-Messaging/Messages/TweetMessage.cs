@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Napier_Bank_Messaging.Tools;
 
 namespace Napier_Bank_Messaging.Messages
 {
@@ -10,8 +11,9 @@ namespace Napier_Bank_Messaging.Messages
     {
         public override void Sanatise(string header, string body)
         {
+            TextSpeakSanitiser textSpeakSanitiser = new TextSpeakSanitiser();
             MessageHeader = header;
-            MessageBody = body;
+            MessageBody = textSpeakSanitiser.Sanatise(GetFormattedListBody(body));
         }
 
         public override bool Format(string body)

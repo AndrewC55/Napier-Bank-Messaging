@@ -9,6 +9,32 @@ namespace Napier_Bank_Messaging.Tools
 {
     class TextSpeakSanitiser
     {
+        public string Sanatise(List<string> body)
+        {
+            List<TextSpeak> wordsList = GetTextSpeakerValues();
+            List<string> messageBody = body[1].Split(" ").ToList();
+            Dictionary<string, string> words = new Dictionary<string, string>();
+            string sanitisedBody = body[0] + "\n";
+
+            foreach (TextSpeak word in wordsList)
+            {
+                words.Add(word.Abbreviation, word.Phrase);
+            }
+
+            foreach (string message in messageBody)
+            {
+                if (words.ContainsKey(message))
+                {
+                    sanitisedBody = sanitisedBody + " " + message + " <" + words[message] + ">";
+                    continue;
+                }
+
+                sanitisedBody = sanitisedBody + " " + message;
+            }
+
+            return sanitisedBody;
+        }
+
         public List<TextSpeak> GetTextSpeakerValues()
         {
             string filePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Tools\\textwords.csv";
