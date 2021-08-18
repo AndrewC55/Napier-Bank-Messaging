@@ -26,32 +26,32 @@ namespace Napier_Bank_Messaging.Test
         public void DoesFormatReturnFalseWhenCharacterCountIsExceeded()
         {
             Message message = new SmsMessage();
-            string exceededChars = "12345678911\n" +
+            string body = "12345678911\n" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-            Assert.IsFalse(message.Format(exceededChars));
+            Assert.IsFalse(message.Format(body));
         }
 
         [TestMethod]
         public void DoesFormatReturnFalseWhenSenderIsWronglyFormatted()
         {
             Message message = new SmsMessage();
-            string exceededChars = "123456789\n" +
+            string body = "123456789\n" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-            Assert.IsFalse(message.Format(exceededChars));
+            Assert.IsFalse(message.Format(body));
         }
 
         [TestMethod]
         public void DoesFormatReturnTrueFormatIsCorrect()
         {
             Message message = new SmsMessage();
-            string exceededChars = "12345678911\n" +
+            string body = "12345678911\n" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-            Assert.IsFalse(message.Format(exceededChars));
+            Assert.IsFalse(message.Format(body));
         }
     }
 }

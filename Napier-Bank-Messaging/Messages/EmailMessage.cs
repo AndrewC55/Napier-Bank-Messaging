@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace Napier_Bank_Messaging.Messages
 {
-    class EmailMessage : Message
+    public class EmailMessage : Message
     {
         public override void Sanatise(string body)
         {

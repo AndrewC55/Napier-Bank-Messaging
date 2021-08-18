@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Napier_Bank_Messaging.Messages
 {
-    class TweetMessage : Message
+    public class TweetMessage : Message
     {
         public override void Sanatise(string body)
         {
@@ -22,7 +22,7 @@ namespace Napier_Bank_Messaging.Messages
         {
             bool isValid = true;
 
-            if (body[0] != '@')
+            if (body[0] != '@' || body.Length > 16)
             {
                 return !isValid;
             }
