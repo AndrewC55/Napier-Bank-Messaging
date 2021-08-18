@@ -50,11 +50,13 @@ namespace Napier_Bank_Messaging
 
             MessageFactory messageFactory = new MessageFactory();
             Message message = messageFactory.Factory(headerDisplay[0]);
-            message.MessageHeader = headerDisplay;
-            message.MessageBody = bodyDisplay;
             if (!message.Format(txtBody.Text))
             {
                 message.MessageBody = "Sorry there was an error with your formatting, please try again";
+            } else
+            {
+                message.MessageHeader = headerDisplay;
+                message.Sanatise(bodyDisplay);
             }
 
             lblHeaderDisplay.Content = message.MessageHeader;

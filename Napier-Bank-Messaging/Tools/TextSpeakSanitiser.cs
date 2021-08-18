@@ -9,9 +9,9 @@ namespace Napier_Bank_Messaging.Tools
 {
     class TextSpeakSanitiser
     {
-        public static List<TextSpeak> GetTextSpeakerValues()
+        public List<TextSpeak> GetTextSpeakerValues()
         {
-            string filePath = "";
+            string filePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Tools\\textwords.csv";
             string[] values = File.ReadAllLines(filePath);
             List<TextSpeak> allValues = new List<TextSpeak>();
             

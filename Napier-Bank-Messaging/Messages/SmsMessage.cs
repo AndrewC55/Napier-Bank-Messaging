@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Napier_Bank_Messaging.Tools;
 
 namespace Napier_Bank_Messaging.Messages
 {
@@ -10,6 +11,30 @@ namespace Napier_Bank_Messaging.Messages
     {
         public override void Sanatise(string body)
         {
+            TextSpeakSanitiser textSpeakSanitiser = new TextSpeakSanitiser();
+            List<string> listBody = body.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
+            List<TextSpeak> wordsList = textSpeakSanitiser.GetTextSpeakerValues();
+            List<string> messageBody = listBody[1].Split(" ").ToList();
+            Dictionary<string, string> words = new Dictionary<string, string>();
+            string sanitisedBody = "";
+
+            foreach (TextSpeak word in wordsList)
+            {
+                words.Add(word.Abbreviation, word.Phrase);
+            }
+
+            foreach (string message in messageBody)
+            {
+                if (words.ContainsKey(message))
+                {
+                    sanitisedBody = sanitisedBody + " " + message + " <" + words[message] + ">";
+                    continue;
+                }
+
+                sanitisedBody = sanitisedBody + " " + message;
+            }
+
+            MessageBody = sanitisedBody;
         }
 
         public override bool Format(string body)
@@ -18,16 +43,16 @@ namespace Napier_Bank_Messaging.Messages
             return IsSenderCorrect(listBody[0]) && IsCharacterLengthCorrect(listBody[1]);
         }
 
-        private bool IsSenderCorrect(string body)
+        private bool IsSenderCorrect(string sender)
         {
             bool isValid = true;
 
-            if (body.Length != 11)
+            if (sender.Length != 11)
             {
                 return !isValid;
             }
 
-            foreach (char c in body)
+            foreach (char c in sender)
             {
                 if (!(c >= '0' && c <= '9'))
                 {
