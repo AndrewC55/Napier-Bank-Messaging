@@ -20,7 +20,7 @@ namespace Napier_Bank_Messaging.Test
             message.MessageBody = "12345678911\n This is an SMS message";
 
             jsonAPI.ToJson(message);
-            Assert.AreEqual(File.ReadLines(FilePath).First(), "{\"MessageHeader\":\"S123456789\",\"MessageBody\":\"12345678911\\n This is an SMS message\"}");
+            Assert.AreEqual(File.ReadLines(FilePath).Last(), "{\"MessageHeader\":\"S123456789\",\"MessageBody\":\"12345678911\\n This is an SMS message\"}");
         }
     }
 }

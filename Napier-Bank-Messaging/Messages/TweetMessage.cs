@@ -15,6 +15,8 @@ namespace Napier_Bank_Messaging.Messages
         public override void Sanatise(string header, string body)
         {
             TextSpeakSanitiser textSpeakSanitiser = new TextSpeakSanitiser();
+            MentionsList mentionsList = new MentionsList();
+            mentionsList.WriteToMentionsList(GetFormattedListBody(body));
             MessageHeader = header;
             MessageBody = textSpeakSanitiser.Sanatise(GetFormattedListBody(body));
         }
