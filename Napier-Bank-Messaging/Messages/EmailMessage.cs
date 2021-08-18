@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using Napier_Bank_Messaging.Tools;
 
 namespace Napier_Bank_Messaging.Messages
 {
@@ -15,8 +16,9 @@ namespace Napier_Bank_Messaging.Messages
 
         public override void Sanatise(string header, string body)
         {
+            UrlSanitiser urlSanitiser = new UrlSanitiser();
             MessageHeader = header;
-            MessageBody = body;
+            MessageBody = urlSanitiser.Sanatise(GetFormattedListBody(body));
         }
 
         public override bool Format(string body)
@@ -28,9 +30,7 @@ namespace Napier_Bank_Messaging.Messages
         private bool IsSenderCorrect(string body)
         {
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            Match match = regex.Match(body);
-
-            return match.Success;
+            return regex.IsMatch(body);
         }
 
         private bool IsSubjectLengthCorrect(string subject)
