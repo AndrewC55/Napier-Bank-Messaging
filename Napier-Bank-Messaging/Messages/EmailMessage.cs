@@ -10,6 +10,9 @@ namespace Napier_Bank_Messaging.Messages
 {
     public class EmailMessage : Message
     {
+        private const int MaximumEmailCharacters = 1028;
+        private const int MaximumSubjectCharacters = 20;
+
         public override void Sanatise(string header, string body)
         {
             MessageHeader = header;
@@ -19,40 +22,25 @@ namespace Napier_Bank_Messaging.Messages
         public override bool Format(string body)
         {
             List<string> listBody = GetFormattedListBody(body);
-            return IsSenderCorrect(listBody[0]) && IsSubjectCorrect(listBody[1]) && IsCharacterLengthCorrect(listBody[2]);
+            return IsSenderCorrect(listBody[0]) && IsSubjectLengthCorrect(listBody[1]) && IsCharacterLengthCorrect(listBody[2]);
         }
 
         private bool IsSenderCorrect(string body)
         {
-            bool isValid = true;
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             Match match = regex.Match(body);
 
             return match.Success;
         }
 
-        private bool IsSubjectCorrect(string body)
+        private bool IsSubjectLengthCorrect(string subject)
         {
-            bool isValid = true;
-
-            if (body.Length > 20)
-            {
-                return !isValid;
-            }
-
-            return isValid;
+            return subject.Length > MaximumSubjectCharacters ? false : true;
         }
 
         private static bool IsCharacterLengthCorrect(string body)
         {
-            bool isValid = true;
-
-            if (body.Length > 1028)
-            {
-                return !isValid;
-            }
-
-            return isValid;
+            return body.Length > MaximumEmailCharacters ? false : true;
         }
     }
 }

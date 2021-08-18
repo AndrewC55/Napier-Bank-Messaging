@@ -9,6 +9,9 @@ namespace Napier_Bank_Messaging.Messages
 {
     public class SmsMessage : Message
     {
+        const int StandardTelephoneNumberLength = 11;
+        const int MaximumSMSCharacters = 140;
+
         public override void Sanatise(string header, string body)
         {
             TextSpeakSanitiser textSpeakSanitiser = new TextSpeakSanitiser();
@@ -24,35 +27,26 @@ namespace Napier_Bank_Messaging.Messages
 
         private bool IsSenderCorrect(string sender)
         {
-            bool isValid = true;
-
-            if (sender.Length != 11)
+            if (sender.Length != StandardTelephoneNumberLength)
             {
-                return !isValid;
+                return false;
             }
 
             foreach (char c in sender)
             {
                 if (!(c >= '0' && c <= '9'))
                 {
-                    return !isValid;
+                    return false;
                 }
             }
 
             // format is correct and true is returned
-            return isValid;
+            return true;
         }
 
         private static bool IsCharacterLengthCorrect(string body)
         {
-            bool isValid = true;
-
-            if (body.Length > 140)
-            {
-                return !isValid;
-            }
-
-            return isValid;
+            return body.Length > MaximumSMSCharacters ? false : true;
         }
     }
 }
