@@ -3,52 +3,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Napier_Bank_Messaging.Tools;
 
 namespace Napier_Bank_Messaging.Messages
 {
     public class SmsMessage : Message
     {
-        public override void Sanatise(string body)
+        const int StandardTelephoneNumberLength = 11;
+        const int MaximumSMSCharacters = 140;
+
+        public override void Sanatise(string header, string body)
         {
+            TextSpeakSanitiser textSpeakSanitiser = new TextSpeakSanitiser();
+            MessageHeader = header;
+            MessageBody = textSpeakSanitiser.Sanatise(GetFormattedListBody(body));
         }
 
         public override bool Format(string body)
         {
-            List<string> listBody = body.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
+            List<string> listBody = GetFormattedListBody(body);
             return IsSenderCorrect(listBody[0]) && IsCharacterLengthCorrect(listBody[1]);
         }
 
-        private bool IsSenderCorrect(string body)
+        private bool IsSenderCorrect(string sender)
         {
-            bool isValid = true;
-
-            if (body.Length != 11)
+            if (sender.Length != StandardTelephoneNumberLength)
             {
-                return !isValid;
+                return false;
             }
 
-            foreach (char c in body)
+            foreach (char c in sender)
             {
                 if (!(c >= '0' && c <= '9'))
                 {
-                    return !isValid;
+                    return false;
                 }
             }
 
             // format is correct and true is returned
-            return isValid;
+            return true;
         }
 
         private static bool IsCharacterLengthCorrect(string body)
         {
-            bool isValid = true;
-
-            if (body.Length > 140)
-            {
-                return !isValid;
-            }
-
-            return isValid;
+            return body.Length > MaximumSMSCharacters ? false : true;
         }
     }
 }
