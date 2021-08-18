@@ -7,8 +7,10 @@ using System.IO;
 
 namespace Napier_Bank_Messaging.Tools
 {
-    class TextSpeakSanitiser
+    public class TextSpeakSanitiser
     {
+        const string FilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Tools\\textwords.csv";
+
         public string Sanatise(List<string> body)
         {
             List<TextSpeak> wordsList = GetTextSpeakerValues();
@@ -35,16 +37,16 @@ namespace Napier_Bank_Messaging.Tools
             return sanitisedBody;
         }
 
-        public List<TextSpeak> GetTextSpeakerValues()
+        private static List<TextSpeak> GetTextSpeakerValues()
         {
-            string filePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Tools\\textwords.csv";
-            string[] values = File.ReadAllLines(filePath);
+            string[] values = File.ReadAllLines(FilePath);
             List<TextSpeak> allValues = new List<TextSpeak>();
             
             foreach (string value in values)
             {
                 string[] row = value.Split(",");
                 TextSpeak textSpeak = new TextSpeak();
+
                 textSpeak.Abbreviation = row[0];
                 textSpeak.Phrase = row[1];
                 allValues.Add(textSpeak);
