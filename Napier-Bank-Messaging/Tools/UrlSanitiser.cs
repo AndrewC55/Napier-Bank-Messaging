@@ -19,7 +19,7 @@ namespace Napier_Bank_Messaging.Tools
             {
                 if (regex.IsMatch(message))
                 {
-                    sanitisedBody = sanitisedBody + "<URL Quarantined>";
+                    sanitisedBody = sanitisedBody + " <URL Quarantined>";
                     continue;
                 }
 
