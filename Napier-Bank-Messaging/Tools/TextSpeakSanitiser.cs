@@ -9,7 +9,7 @@ namespace Napier_Bank_Messaging.Tools
 {
     public class TextSpeakSanitiser
     {
-        const string FilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Tools\\textwords.csv";
+        const string FilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\textwords.csv";
 
         public string Sanatise(List<string> body)
         {
