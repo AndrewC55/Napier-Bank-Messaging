@@ -1,4 +1,4 @@
-{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSubject2\n \u003CURL Quarantined\u003E"}{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSubject\n www"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSubject2\n \u003CURL Quarantined\u003E"}
 {"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\n Sort Code: 99-99-99"}
 {"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\n Sort Code: 99-99-99"}
 {"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\n Sort Code: 99-99-99"}
@@ -10,3 +10,16 @@
 {"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\n\nSort Code:\nNature of Incident:\n wwwwwww"}
 {"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSubject\n wwwwwww"}
 {"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSubject\n wwwwwww \u003CURL Quarantined\u003E"}
+{"MessageHeader":"S123456789","MessageBody":"12345678911\n This is an SMS message"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSubject\n wwwww"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\n\nSort Code:\nNature of Incident:\n wwwww"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\n\nSort Code:\nNature of Incident:\n wwwww"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR 2\n\nSort Code:\nNature of Incident:\n wwwww"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSubject\n wwwww"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\nSort Code:\nNature of Incident:\n wwwww"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\nSort Code: 99-99-99\nNature of Incident: Theft\n wwwww"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR 07/02/00\nSort Code: 99-99-99\nNature of Incident: Theft\n check out this link \u003CURL Quarantined\u003E"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\nSort Code: 99-99-99\nNature of Incident: Theft\n wwwww"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\nSort Code: 99-99-99\nNature of Incident: Theft\n wwww"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\nSort Code: 99-99-99\nNature of Incident: Raid\n wwwww"}
+{"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\nSort Code: 00-00-00\nNature of Incident: Theft\n wwwwwwwwwwwww"}

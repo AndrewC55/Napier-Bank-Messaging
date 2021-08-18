@@ -21,7 +21,7 @@ namespace Napier_Bank_Messaging.Tools
 
             if (isSir)
             {
-                sanitisedBody = sanitisedBody + "\n" + body[2] + "\n" + body[3] + "\n";
+                sanitisedBody = sanitisedBody + body[2] + "\n" + body[3] + "\n";
             }
 
             foreach (string message in messageBody)

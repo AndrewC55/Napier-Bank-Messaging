@@ -59,8 +59,8 @@ namespace Napier_Bank_Messaging.Messages
         private bool IsSortCodeCorrect(string sortCode)
         {
             MessageHeader = "sort";
-            Regex regex = new Regex(@"/^(?!(?:0{6}|00-00-00))(?:\d{6}|\d\d-\d\d-\d\d)$");
-            if (sortCode.Substring(0, 10) == "Sort Code:")
+            Regex regex = new Regex(@"/(\d{2}-?){2}\d{2}/");
+            if ((sortCode.Substring(0, 10) == "Sort Code:"))
             {
                 return true;
             }
@@ -70,20 +70,19 @@ namespace Napier_Bank_Messaging.Messages
 
         private bool IsNatureOfIncidentCorrect(string natureOfIncident)
         {
-            MessageHeader = "incident";
             SirList sirList = new SirList();
-            if (natureOfIncident.Substring(0, 18) == "Nature of Incident")
+            if (natureOfIncident.Substring(0, 18) != "Nature of Incident")
             {
-                return true;
+                return false;
             }
 
-            /*foreach (string incident in sirList.GetNatureOfIncidentsValues())
+            foreach (string incident in sirList.GetNatureOfIncidentsValues())
             {
-                if (incident == natureOfIncident.Substring())
+                if (incident == natureOfIncident.Substring(20))
                 {
                     return true;
                 }
-            }*/
+            }
 
             return false;
         }

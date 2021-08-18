@@ -16,7 +16,7 @@ namespace Napier_Bank_Messaging.Test
             body.Add("Subject");
             body.Add("This is an email");
 
-            Assert.AreEqual(urlSanitiser.Sanatise(body), "andrew@test.com\nSubject\n This is an email");
+            Assert.AreEqual(urlSanitiser.Sanatise(body, false), "andrew@test.com\nSubject\n This is an email");
         }
 
         [TestMethod]
@@ -28,7 +28,7 @@ namespace Napier_Bank_Messaging.Test
             body.Add("Subject");
             body.Add("This is an email, here's a link http://Google.com");
 
-            Assert.AreEqual(urlSanitiser.Sanatise(body), "andrew@test.com\nSubject\n This is an email, here's a link <URL Quarantined>");
+            Assert.AreEqual(urlSanitiser.Sanatise(body, false), "andrew@test.com\nSubject\n This is an email, here's a link <URL Quarantined>");
         }
     }
 }
