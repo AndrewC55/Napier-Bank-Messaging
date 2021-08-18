@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Napier_Bank_Messaging.Messages
 {
-    public class TweetMessage : Message
+    public class EmailMessage : Message
     {
         public override void Sanatise(string body)
         {
@@ -15,19 +17,27 @@ namespace Napier_Bank_Messaging.Messages
         public override bool Format(string body)
         {
             List<string> listBody = body.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
-            return IsSenderCorrect(listBody[0]) && IsCharacterLengthCorrect(listBody[1]);
+            return IsSenderCorrect(listBody[0]) && IsSubjectCorrect(listBody[1]) && IsCharacterLengthCorrect(listBody[2]);
         }
 
         private bool IsSenderCorrect(string body)
         {
             bool isValid = true;
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(body);
 
-            if (body[0] != '@' || body.Length > 16)
+            return match.Success;
+        }
+
+        private bool IsSubjectCorrect(string body)
+        {
+            bool isValid = true;
+
+            if (body.Length > 20)
             {
                 return !isValid;
             }
 
-            // format is correct and true is returned
             return isValid;
         }
 
@@ -35,7 +45,7 @@ namespace Napier_Bank_Messaging.Messages
         {
             bool isValid = true;
 
-            if (body.Length > 140)
+            if (body.Length > 1028)
             {
                 return !isValid;
             }

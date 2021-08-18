@@ -21,6 +21,7 @@ namespace Napier_Bank_Messaging.Messages
             return type switch
             {
                 'S' => new SmsMessage(),
+                'E' => new EmailMessage(),
                 'T' => new TweetMessage()
             };
         }
