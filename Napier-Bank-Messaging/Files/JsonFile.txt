@@ -23,3 +23,9 @@
 {"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\nSort Code: 99-99-99\nNature of Incident: Theft\n wwww"}
 {"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\nSort Code: 99-99-99\nNature of Incident: Raid\n wwwww"}
 {"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR\nSort Code: 00-00-00\nNature of Incident: Theft\n wwwwwwwwwwwww"}
+{"MessageHeader":"T123456789","MessageBody":"@andrew\n Tweet"}
+{"MessageHeader":"T123456789","MessageBody":"@andrew\n Tweet @andrew"}
+{"MessageHeader":"S123456789","MessageBody":"12345678911\n This is an SMS message"}
+{"MessageHeader":"S123456789","MessageBody":"12345678911\n This is an SMS message"}
+{"MessageHeader":"S123456789","MessageBody":"12345678911\n This is an SMS message"}
+{"MessageHeader":"S123456789","MessageBody":"12345678911\n This is an SMS message"}
