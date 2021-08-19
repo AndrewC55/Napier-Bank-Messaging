@@ -43,6 +43,7 @@ namespace Napier_Bank_Messaging.Messages
                 return IsSenderCorrect(listBody[0]) && IsSubjectLengthCorrect(listBody[1]) && IsCharacterLengthCorrect(listBody[2]);
             } catch (ArgumentOutOfRangeException)
             {
+                // define body as error message
                 MessageBody = "Sorry format of email is wrong, please try again";
                 return false;
             }
@@ -60,67 +61,88 @@ namespace Napier_Bank_Messaging.Messages
         // 
         private bool IsSenderCorrect(string sender)
         {
+            // define regex pattern for email
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            // if sender is not in email format
             if (!regex.IsMatch(sender))
             {
+                // define body as error message
                 MessageBody = "Sorry there was an error with your message body, your Sender was formatted wrong (e.g johndoe@email.com)";
                 return false;
             }
 
+            // patter is correct
             return true;
         }
 
         private bool IsSubjectLengthCorrect(string subject)
         {
+            // if subject is longer than maximum allowed characters
             if (subject.Length > CharecterCountEnum.MaximumSubjectCharacters)
             {
+                // define body as error message
                 MessageBody = "Sorry there was an error with your message body, your subject must be no more than " + CharecterCountEnum.MaximumSubjectCharacters + " characters long";
                 return false;
             }
-            return subject.Length >CharecterCountEnum.MaximumSubjectCharacters ? false : true;
+
+            // character count is in range
+            return true;
         }
 
         private bool IsSortCodeCorrect(string sortCode)
         {
             Regex regex = new Regex(@"/(\d{2}-?){2}\d{2}/");
+            // if sort code starts with sort code string
             if (!(sortCode.Substring(0, 10) == "Sort Code:"))
             {
+                // define body as error message
                 MessageBody = "Sorry there was an error with your message body, your Sort code was formatted wrong (e.g Sort Code: 99-99-99)";
                 return false;
             }
 
+            // sort code is correct format
             return true;
         }
 
         private bool IsNatureOfIncidentCorrect(string natureOfIncident)
         {
+            // create sir list instance
             SirList sirList = new SirList();
+            // if nature of incident code starts with nature of incident string
             if (natureOfIncident.Substring(0, 18) != "Nature of Incident")
             {
+                // define body as error message
                 MessageBody = "Sorry there was an error with your message body, your Nature of Incident was formatted wrong (e.g Nature of Incident: Theft)";
                 return false;
             }
 
+            // foreach through every incident type
             foreach (string incident in sirList.GetNatureOfIncidentsValues())
             {
+                // if incident type matches nature of incident
                 if (incident == natureOfIncident.Substring(20))
                 {
+                    // break loop as match has been found
                     return true;
                 }
             }
 
+            // define body as error message
             MessageBody = "Sorry there was an error with your message body, your Nature of Incident was formatted wrong (e.g Nature of Incident: Theft)";
             return false;
         }
 
         private bool IsCharacterLengthCorrect(string body)
         {
+            // if message text if more than 1028 characters long
             if (body.Length > CharecterCountEnum.MaximumEmailCharacters)
             {
+                // define body as error message
                 MessageBody = "Sorry there was an error with your message body, your message must be no more than " + CharecterCountEnum.MaximumEmailCharacters +  " characters long";
                 return false;
             }
 
+            // character count is in range
             return true;
         }
     }

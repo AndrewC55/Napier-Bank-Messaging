@@ -1,7 +1,0 @@
-E123456789: http://Google.com
-E123456789: http://Bing.com
-E123456789: http://Bing.com
-E123456789: http://Google.com
-E123456789: http://Google.com
-E123456789: http://Google.com
-E123456789: http://Google.com

@@ -1,5 +1,6 @@
 ﻿namespace Napier_Bank_Messaging.Enum
 {
+    // enum used for all string filepath constants
     public class FilePathEnum
     {
         public const string JsonFilePath           = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\JsonFile.txt";

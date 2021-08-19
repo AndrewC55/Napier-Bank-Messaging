@@ -1,5 +1,6 @@
 ﻿namespace Napier_Bank_Messaging.Enum
 {
+    // enum used for all integer constants
     public class CharecterCountEnum
     {
         public const int MaximumEmailCharacters        = 1028;

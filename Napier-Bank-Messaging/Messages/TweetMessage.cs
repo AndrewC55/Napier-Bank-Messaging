@@ -37,6 +37,7 @@ namespace Napier_Bank_Messaging.Messages
                 return IsSenderCorrect(listBody[0]) && IsCharacterLengthCorrect(listBody[1]);
             } catch (ArgumentOutOfRangeException)
             {
+                // define body as error message
                 MessageBody = "Sorry format of email is wrong, please try again";
                 return false;
             }
