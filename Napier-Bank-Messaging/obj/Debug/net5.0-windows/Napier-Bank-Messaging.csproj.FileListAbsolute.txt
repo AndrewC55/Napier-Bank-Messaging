@@ -22,3 +22,7 @@ C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0-wind
 C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0-windows\Napier-Bank-Messaging.genruntimeconfig.cache
 C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0-windows\SirListWindow.g.cs
 C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0-windows\SirListWindow.baml
+C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0-windows\MentionListWindow.g.cs
+C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0-windows\MentionListWindow.baml
+C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0-windows\HashtagListWindow.g.cs
+C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\obj\Debug\net5.0-windows\HashtagListWindow.baml

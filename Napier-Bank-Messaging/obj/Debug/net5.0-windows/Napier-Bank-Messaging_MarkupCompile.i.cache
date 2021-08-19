@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 C:\Development\Napier-Bank-Messaging\Napier-Bank-Messaging\App.xaml
-2-1175440514
+4-1566609912
 
-192019161914
+21-1036435985
 193-1891726104
-MainWindow.xaml;SirListWindow.xaml;
+HashtagListWindow.xaml;MainWindow.xaml;MentionListWindow.xaml;SirListWindow.xaml;
 
-True
+False
 

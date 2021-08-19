@@ -69,7 +69,11 @@ namespace Napier_Bank_Messaging
         private void btnEnd_Click(object sender, RoutedEventArgs e)
         {
             SirListWindow sirListWindow = new SirListWindow();
+            MentionListWindow mentionListWindow = new MentionListWindow();
+            HashtagListWindow hashtagListWindow = new HashtagListWindow();
             sirListWindow.Show();
+            mentionListWindow.Show();
+            hashtagListWindow.Show();
             Close();
         }
     }

@@ -16,20 +16,19 @@ using System.IO;
 namespace Napier_Bank_Messaging
 {
     /// <summary>
-    /// Interaction logic for SirListWindow.xaml
+    /// Interaction logic for HashtagListWindow.xaml
     /// </summary>
-    public partial class SirListWindow : Window
+    public partial class HashtagListWindow : Window
     {
+        private const string SirFilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\HashtagList.txt";
 
-        private const string SirFilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\SirList.txt";
-
-        public SirListWindow()
+        public HashtagListWindow()
         {
             InitializeComponent();
-            DisplaySirReport();
+            DisplayHashtagReport();
         }
 
-        private void DisplaySirReport()
+        private void DisplayHashtagReport()
         {
             string[] values = File.ReadAllLines(SirFilePath);
             lblDisplay.Content = "\n";

@@ -7,12 +7,24 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="HashtagListWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MentionListWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="SirListWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="HashtagListWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MentionListWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="SirListWindow.xaml">

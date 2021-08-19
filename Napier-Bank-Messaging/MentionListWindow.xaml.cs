@@ -16,22 +16,21 @@ using System.IO;
 namespace Napier_Bank_Messaging
 {
     /// <summary>
-    /// Interaction logic for SirListWindow.xaml
+    /// Interaction logic for MentionListWindow.xaml
     /// </summary>
-    public partial class SirListWindow : Window
+    public partial class MentionListWindow : Window
     {
+        private const string MentionsFilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\MentionsList.txt";
 
-        private const string SirFilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\SirList.txt";
-
-        public SirListWindow()
+        public MentionListWindow()
         {
             InitializeComponent();
-            DisplaySirReport();
+            DisplayMentionList();
         }
 
-        private void DisplaySirReport()
+        private void DisplayMentionList()
         {
-            string[] values = File.ReadAllLines(SirFilePath);
+            string[] values = File.ReadAllLines(MentionsFilePath);
             lblDisplay.Content = "\n";
             foreach (string value in values)
             {
