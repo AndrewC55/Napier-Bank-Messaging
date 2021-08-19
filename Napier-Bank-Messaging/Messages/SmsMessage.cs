@@ -19,7 +19,7 @@ namespace Napier_Bank_Messaging.Messages
             MessageBody = textSpeakSanitiser.Sanatise(GetFormattedListBody(body));
         }
 
-        public override bool Format(string body)
+        public override bool FormatBody(string body)
         {
             List<string> listBody = GetFormattedListBody(body);
             return IsSenderCorrect(listBody[0]) && IsCharacterLengthCorrect(listBody[1]);
@@ -29,6 +29,7 @@ namespace Napier_Bank_Messaging.Messages
         {
             if (sender.Length != StandardTelephoneNumberLength)
             {
+                MessageBody = "Sorry there was an error with your sender, your sender must be exactly 11 digits";
                 return false;
             }
 
@@ -36,6 +37,7 @@ namespace Napier_Bank_Messaging.Messages
             {
                 if (!(c >= '0' && c <= '9'))
                 {
+                    MessageBody = "Sorry there was an error with your sender, your sender must be all digits";
                     return false;
                 }
             }
@@ -44,9 +46,15 @@ namespace Napier_Bank_Messaging.Messages
             return true;
         }
 
-        private static bool IsCharacterLengthCorrect(string body)
+        private bool IsCharacterLengthCorrect(string body)
         {
-            return body.Length > MaximumSMSCharacters ? false : true;
+            if (body.Length > MaximumSMSCharacters)
+            {
+                MessageBody = "Sorry there was an error with your message body, your message must be no more than 140 characters long";
+                return false;
+            }
+            
+            return true;
         }
     }
 }

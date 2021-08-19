@@ -25,7 +25,7 @@ namespace Napier_Bank_Messaging.Messages
             MessageBody = textSpeakSanitiser.Sanatise(GetFormattedListBody(body));
         }
 
-        public override bool Format(string body)
+        public override bool FormatBody(string body)
         {
             List<string> listBody = GetFormattedListBody(body);
             return IsSenderCorrect(listBody[0]) && IsCharacterLengthCorrect(listBody[1]);
@@ -35,6 +35,7 @@ namespace Napier_Bank_Messaging.Messages
         {
             if (sender[0] != '@' || sender.Length > MaximumSenderCharacters)
             {
+                MessageBody = "Sorry there was an error with your sender, your sender must begin with an '@' and be no more than 16 characters long";
                 return false;
             }
 
@@ -42,9 +43,15 @@ namespace Napier_Bank_Messaging.Messages
             return true;
         }
 
-        private static bool IsCharacterLengthCorrect(string body)
+        private bool IsCharacterLengthCorrect(string body)
         {
-            return body.Length > MaximumTweetCharacters ? false : true;
+            if (body.Length > MaximumTweetCharacters)
+            {
+                MessageBody = "Sorry there was an error with your message body, your message must be no more than 140 characters long";
+                return false;
+            }
+
+            return true;
         }
     }
 }

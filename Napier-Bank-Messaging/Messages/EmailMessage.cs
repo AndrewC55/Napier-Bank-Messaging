@@ -29,7 +29,7 @@ namespace Napier_Bank_Messaging.Messages
             MessageBody = urlSanitiser.Sanatise(listBody, IsEmailSir(listBody[1]));
         }
 
-        public override bool Format(string body)
+        public override bool FormatBody(string body)
         {
             List<string> listBody = GetFormattedListBody(body);
             if (IsEmailSir(listBody[1]))
