@@ -2,13 +2,12 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.IO;
+using Napier_Bank_Messaging.Enum;
 
 namespace Napier_Bank_Messaging.Tools
 {
     public class UrlSanitiser
     {
-        private const string FilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\QuarantineList.txt";
-
         public string Sanatise(string header, List<string> body, bool isSir)
         {
             string mainMessage = isSir ? body[4] : body[2];
@@ -38,7 +37,7 @@ namespace Napier_Bank_Messaging.Tools
 
         private void WriteToQuarantineList(string header, string url)
         {
-            File.AppendAllText(FilePath, header + ": " + url + "\n");
+            File.AppendAllText(FilePathEnum.QuarantineListFilePath, header + ": " + url + "\n");
         }
     }
 }

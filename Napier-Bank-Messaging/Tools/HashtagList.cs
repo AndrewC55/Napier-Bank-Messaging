@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
+using Napier_Bank_Messaging.Enum;
 
 namespace Napier_Bank_Messaging.Tools
 {
     public class HashtagList
     {
-        private const string FilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\HashtagList.txt";
-
         public void WriteToHashtagsList(string header, List<string> body)
         {
             List<string> messageBody = body[1].Split(" ").ToList();
@@ -19,7 +15,7 @@ namespace Napier_Bank_Messaging.Tools
             {
                 if (message[0] == '#')
                 {
-                    File.AppendAllText(FilePath, header + ": " + message + "\n");
+                    File.AppendAllText(FilePathEnum.HashtagListFilePath, header + ": " + message + "\n");
                 }
             }
         }

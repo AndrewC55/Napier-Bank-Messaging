@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
+using Napier_Bank_Messaging.Enum;
 
 namespace Napier_Bank_Messaging.Tools
 {
     public class TextSpeakSanitiser
     {
-        private const string FilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\textwords.csv";
-
         public string Sanatise(List<string> body)
         {
             List<TextSpeak> wordsList = GetTextSpeakerValues();
@@ -39,7 +35,7 @@ namespace Napier_Bank_Messaging.Tools
 
         private static List<TextSpeak> GetTextSpeakerValues()
         {
-            string[] values = File.ReadAllLines(FilePath);
+            string[] values = File.ReadAllLines(FilePathEnum.TextWordsFilePath);
             List<TextSpeak> allValues = new List<TextSpeak>();
             
             foreach (string value in values)

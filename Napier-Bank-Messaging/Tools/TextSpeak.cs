@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Napier_Bank_Messaging.Tools
+﻿namespace Napier_Bank_Messaging.Tools
 {
     public class TextSpeak
     {

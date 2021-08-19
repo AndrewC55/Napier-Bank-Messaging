@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using Napier_Bank_Messaging.Tools;
+using Napier_Bank_Messaging.Enum;
 
 namespace Napier_Bank_Messaging.Messages
 {
     public class TweetMessage : Message
     {
-        const int MaximumSenderCharacters = 16;
-        const int MaximumTweetCharacters = 140;
-
         public override void Sanatise(string header, string body)
         {
             TextSpeakSanitiser textSpeakSanitiser = new TextSpeakSanitiser();
@@ -29,9 +27,9 @@ namespace Napier_Bank_Messaging.Messages
 
         private bool IsSenderCorrect(string sender)
         {
-            if (sender[0] != '@' || sender.Length > MaximumSenderCharacters)
+            if (sender[0] != '@' || sender.Length > CharecterCountEnum.MaximumSenderCharacters)
             {
-                MessageBody = "Sorry there was an error with your sender, your sender must begin with an '@' and be no more than 16 characters long";
+                MessageBody = "Sorry there was an error with your sender, your sender must begin with an '@' and be no more than "  + CharecterCountEnum.MaximumSenderCharacters + " characters long";
                 return false;
             }
 
@@ -41,9 +39,9 @@ namespace Napier_Bank_Messaging.Messages
 
         private bool IsCharacterLengthCorrect(string body)
         {
-            if (body.Length > MaximumTweetCharacters)
+            if (body.Length > CharecterCountEnum.MaximumSmsAndTweetCharacters)
             {
-                MessageBody = "Sorry there was an error with your message body, your message must be no more than " + MaximumTweetCharacters + " characters long";
+                MessageBody = "Sorry there was an error with your message body, your message must be no more than " + CharecterCountEnum.MaximumSmsAndTweetCharacters + " characters long";
                 return false;
             }
 

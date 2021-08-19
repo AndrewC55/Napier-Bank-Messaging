@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.IO;
+using Napier_Bank_Messaging.Enum;
 
 namespace Napier_Bank_Messaging.Tools
 {
     public class SirList
     {
-        private const string IncidentFilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\NatureOfIncidentList.txt";
-        private const string SirFilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\SirList.txt";
-
         public List<string> GetNatureOfIncidentsValues()
         {
-            string[] values = File.ReadAllLines(IncidentFilePath);
+            string[] values = File.ReadAllLines(FilePathEnum.IncidentFilePath);
             List<string> allValues = new List<string>();
 
             foreach (string value in values)
@@ -25,7 +21,7 @@ namespace Napier_Bank_Messaging.Tools
 
         public void WriteToSirList(string header, string sortCode, string natureOfIncident)
         {
-            File.AppendAllText(SirFilePath, header + "\n" + sortCode + "\n" + natureOfIncident + "\n");
+            File.AppendAllText(FilePathEnum.SirListFilePath, header + "\n" + sortCode + "\n" + natureOfIncident + "\n");
         }
     }
 }
