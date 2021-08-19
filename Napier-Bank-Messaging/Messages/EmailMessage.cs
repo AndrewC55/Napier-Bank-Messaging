@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Napier_Bank_Messaging.Tools;
+using Napier_Bank_Messaging.Enum;
 
 namespace Napier_Bank_Messaging.Messages
 {
     public class EmailMessage : Message
     {
-        private const int MaximumEmailCharacters = 1028;
-        private const int MaximumSubjectCharacters = 20;
-
         public override void Sanatise(string header, string body)
         {
             UrlSanitiser urlSanitiser = new UrlSanitiser();
@@ -54,12 +52,12 @@ namespace Napier_Bank_Messaging.Messages
 
         private bool IsSubjectLengthCorrect(string subject)
         {
-            if (subject.Length > MaximumSubjectCharacters)
+            if (subject.Length > CharecterCountEnum.MaximumSubjectCharacters)
             {
-                MessageBody = "Sorry there was an error with your message body, your subject must be no more than " + MaximumSubjectCharacters + " characters long";
+                MessageBody = "Sorry there was an error with your message body, your subject must be no more than " + CharecterCountEnum.MaximumSubjectCharacters + " characters long";
                 return false;
             }
-            return subject.Length > MaximumSubjectCharacters ? false : true;
+            return subject.Length >CharecterCountEnum.MaximumSubjectCharacters ? false : true;
         }
 
         private bool IsSortCodeCorrect(string sortCode)
@@ -97,9 +95,9 @@ namespace Napier_Bank_Messaging.Messages
 
         private bool IsCharacterLengthCorrect(string body)
         {
-            if (body.Length > MaximumEmailCharacters)
+            if (body.Length > CharecterCountEnum.MaximumEmailCharacters)
             {
-                MessageBody = "Sorry there was an error with your message body, your message must be no more than " + MaximumEmailCharacters +  " characters long";
+                MessageBody = "Sorry there was an error with your message body, your message must be no more than " + CharecterCountEnum.MaximumEmailCharacters +  " characters long";
                 return false;
             }
 

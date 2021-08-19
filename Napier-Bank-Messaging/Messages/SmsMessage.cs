@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using Napier_Bank_Messaging.Tools;
+using Napier_Bank_Messaging.Enum;
 
 namespace Napier_Bank_Messaging.Messages
 {
     public class SmsMessage : Message
     {
-        const int StandardTelephoneNumberLength = 11;
-        const int MaximumSMSCharacters = 140;
-
         public override void Sanatise(string header, string body)
         {
             TextSpeakSanitiser textSpeakSanitiser = new TextSpeakSanitiser();
@@ -23,9 +21,9 @@ namespace Napier_Bank_Messaging.Messages
 
         private bool IsSenderCorrect(string sender)
         {
-            if (sender.Length != StandardTelephoneNumberLength)
+            if (sender.Length != CharecterCountEnum.StandardTelephoneNumberLength)
             {
-                MessageBody = "Sorry there was an error with your sender, your sender must be exactly 11 digits";
+                MessageBody = "Sorry there was an error with your sender, your sender must be exactly " + CharecterCountEnum.StandardTelephoneNumberLength + " digits";
                 return false;
             }
 
@@ -44,9 +42,9 @@ namespace Napier_Bank_Messaging.Messages
 
         private bool IsCharacterLengthCorrect(string body)
         {
-            if (body.Length > MaximumSMSCharacters)
+            if (body.Length > CharecterCountEnum.MaximumSmsAndTweetCharacters)
             {
-                MessageBody = "Sorry there was an error with your message body, your message must be no more than " + MaximumSMSCharacters + " characters long";
+                MessageBody = "Sorry there was an error with your message body, your message must be no more than " + CharecterCountEnum.MaximumSmsAndTweetCharacters + " characters long";
                 return false;
             }
             
