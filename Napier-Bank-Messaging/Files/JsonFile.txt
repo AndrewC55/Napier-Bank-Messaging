@@ -7,3 +7,5 @@
 {"MessageHeader":"E123456789","MessageBody":"andrew@test.com\nSIR 19/08/21\nSort Code: 99-99-99\nNature of Incident: Theft\n This is an email with a link \u003CURL Quarantined\u003E"}
 {"MessageHeader":"S123456789","MessageBody":"12345678911\n This is an SMS message"}
 {"MessageHeader":"S123456789","MessageBody":"12345678911\n This is an SMS message"}
+{"MessageHeader":"S123456789","MessageBody":"12345678911\n This is an SMS message"}
+{"MessageHeader":"S123456789","MessageBody":"12345678911\n This is an SMS message"}

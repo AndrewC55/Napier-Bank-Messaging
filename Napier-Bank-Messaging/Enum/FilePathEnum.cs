@@ -1,6 +1,6 @@
 ﻿namespace Napier_Bank_Messaging.Enum
 {
-    class FilePathEnum
+    public class FilePathEnum
     {
         public const string JsonFilePath           = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\JsonFile.txt";
         public const string HashtagListFilePath    = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\HashtagList.txt";

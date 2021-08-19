@@ -28,7 +28,7 @@ namespace Napier_Bank_Messaging.Tools
         public void WriteToSirList(string header, string sortCode, string natureOfIncident)
         {
             // write sir sort code and nature of incident to file
-            File.AppendAllText(FilePathEnum.SirListFilePath, header + "\n" + sortCode + "\n" + natureOfIncident + "\n");
+            File.AppendAllText(FilePathEnum.SirListFilePath, header + ": " + sortCode + ", " + natureOfIncident + "\n");
         }
     }
 }

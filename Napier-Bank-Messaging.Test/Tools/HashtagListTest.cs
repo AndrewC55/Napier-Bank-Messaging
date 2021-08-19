@@ -1,16 +1,15 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using Napier_Bank_Messaging.Tools;
-using Napier_Bank_Messaging.Messages;
 using System.IO;
 using System.Linq;
+using Napier_Bank_Messaging.Enum;
 
 namespace Napier_Bank_Messaging.Test
 {
     [TestClass]
     public class HashtagListTest
     {
-        private const string FilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\HashtagList.txt";
         [TestMethod]
         public void DoesWriteToFileCorrectlyWriteToFile()
         {
@@ -21,7 +20,7 @@ namespace Napier_Bank_Messaging.Test
             body.Add("add #test");
 
             hashtagList.WriteToHashtagsList(header, body);
-            Assert.AreEqual(File.ReadLines(FilePath).Last(), "T123456789: #test");
+            Assert.AreEqual(File.ReadLines(FilePathEnum.HashtagListFilePath).Last(), "T123456789: #test");
         }
     }
 }
