@@ -28,6 +28,9 @@ namespace Napier_Bank_Messaging
                 // redisplay content of label with new values
                 lblDisplay.Content = "\n" + lblDisplay.Content + value + "\n";
             }
+
+            // clear file for next use
+            File.WriteAllText(FilePathEnum.HashtagListFilePath, string.Empty);
         }
     }
 }
