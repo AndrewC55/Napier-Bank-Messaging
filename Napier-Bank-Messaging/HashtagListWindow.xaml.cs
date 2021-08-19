@@ -11,17 +11,22 @@ namespace Napier_Bank_Messaging
     {
         public HashtagListWindow()
         {
+            // initialize window
             InitializeComponent();
+            // call function to display all hastags
             DisplayHashtagReport();
         }
 
+        // function to display list
         private void DisplayHashtagReport()
         {
+            // read all files and store them in a string array
             string[] values = File.ReadAllLines(FilePathEnum.HashtagListFilePath);
-            lblDisplay.Content = "\n";
+            // foreach through string array
             foreach (string value in values)
             {
-                lblDisplay.Content = lblDisplay.Content + value + "\n";
+                // redisplay content of label with new values
+                lblDisplay.Content = "\n" + lblDisplay.Content + value + "\n";
             }
         }
     }

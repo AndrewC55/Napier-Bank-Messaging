@@ -7,5 +7,6 @@
         public const int StandardTelephoneNumberLength = 11;
         public const int MaximumSenderCharacters       = 16;
         public const int MaximumSmsAndTweetCharacters  = 140;
+        public const int MaximumHeaderCharacters       = 10;
     }
 }
