@@ -32,7 +32,7 @@ namespace Napier_Bank_Messaging.Test
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-            Assert.IsFalse(message.Format(exceededChars));
+            Assert.IsFalse(message.FormatBody(exceededChars));
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace Napier_Bank_Messaging.Test
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-            Assert.IsFalse(message.Format(exceededChars));
+            Assert.IsFalse(message.FormatBody(exceededChars));
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@ namespace Napier_Bank_Messaging.Test
             Message message = new TweetMessage();
             string exceededChars = "@andrew\n" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-            Assert.IsFalse(message.Format(exceededChars));
+            Assert.IsFalse(message.FormatBody(exceededChars));
         }
     }
 }

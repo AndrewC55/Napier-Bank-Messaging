@@ -11,7 +11,7 @@ namespace Napier_Bank_Messaging.Tools
     {
         private const string FilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\MentionsList.txt";
 
-        public void WriteToMentionsList(List<string> body)
+        public void WriteToMentionsList(string header, List<string> body)
         {
             List<string> messageBody = body[1].Split(" ").ToList();
 
@@ -19,7 +19,7 @@ namespace Napier_Bank_Messaging.Tools
             {
                 if (message[0] == '@')
                 {
-                    File.AppendAllText(FilePath, message + "\n");
+                    File.AppendAllText(FilePath, header + ": " + message + "\n");
                 }
             }
         }

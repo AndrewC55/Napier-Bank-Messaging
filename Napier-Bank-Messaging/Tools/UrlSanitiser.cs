@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.IO;
 
@@ -12,7 +9,7 @@ namespace Napier_Bank_Messaging.Tools
     {
         private const string FilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\QuarantineList.txt";
 
-        public string Sanatise(List<string> body, bool isSir)
+        public string Sanatise(string header, List<string> body, bool isSir)
         {
             string mainMessage = isSir ? body[4] : body[2];
             List<string> messageBody = mainMessage.Split(" ").ToList();
@@ -29,7 +26,7 @@ namespace Napier_Bank_Messaging.Tools
                 if (regex.IsMatch(message))
                 {
                     sanitisedBody = sanitisedBody + " <URL Quarantined>";
-                    WriteToQuarantineList(message);
+                    WriteToQuarantineList(header, message);
                     continue;
                 }
 
@@ -39,9 +36,9 @@ namespace Napier_Bank_Messaging.Tools
             return sanitisedBody;
         }
 
-        private void WriteToQuarantineList(string url)
+        private void WriteToQuarantineList(string header, string url)
         {
-            File.AppendAllText(FilePath, url + "\n");
+            File.AppendAllText(FilePath, header + ": " + url + "\n");
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Napier_Bank_Messaging.Tools;
 
@@ -22,17 +17,17 @@ namespace Napier_Bank_Messaging.Messages
 
             if (IsEmailSir(listBody[1]))
             {
-                sirList.WriteToSirList(listBody[2], listBody[3]);
+                sirList.WriteToSirList(listBody[0], listBody[2], listBody[3]);
             }
 
             MessageHeader = header;
-            MessageBody = urlSanitiser.Sanatise(listBody, IsEmailSir(listBody[1]));
+            MessageBody = urlSanitiser.Sanatise(header, listBody, IsEmailSir(listBody[1]));
         }
 
         public override bool FormatBody(string body)
         {
             List<string> listBody = GetFormattedListBody(body);
-            if (IsEmailSir(listBody[1]))
+            if (IsEmailSir(listBody[1]) && listBody.Count == 5)
             {
                 return IsSenderCorrect(listBody[0]) && IsSubjectLengthCorrect(listBody[1]) && IsSortCodeCorrect(listBody[2]) && IsNatureOfIncidentCorrect(listBody[3]) && IsCharacterLengthCorrect(listBody[4]);
             }
@@ -45,27 +40,38 @@ namespace Napier_Bank_Messaging.Messages
             return subject == "SIR" ? true : false;
         }
 
-        private bool IsSenderCorrect(string body)
+        private bool IsSenderCorrect(string sender)
         {
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            return regex.IsMatch(body);
+            if (!regex.IsMatch(sender))
+            {
+                MessageBody = "Sorry there was an error with your message body, your Sender was formatted wrong (e.g johndoe@email.com)";
+                return false;
+            }
+
+            return true;
         }
 
         private bool IsSubjectLengthCorrect(string subject)
         {
+            if (subject.Length > MaximumSubjectCharacters)
+            {
+                MessageBody = "Sorry there was an error with your message body, your subject must be no more than " + MaximumSubjectCharacters + " characters long";
+                return false;
+            }
             return subject.Length > MaximumSubjectCharacters ? false : true;
         }
 
         private bool IsSortCodeCorrect(string sortCode)
         {
-            MessageHeader = "sort";
             Regex regex = new Regex(@"/(\d{2}-?){2}\d{2}/");
-            if ((sortCode.Substring(0, 10) == "Sort Code:"))
+            if (!(sortCode.Substring(0, 10) == "Sort Code:"))
             {
-                return true;
+                MessageBody = "Sorry there was an error with your message body, your Sort code was formatted wrong (e.g Sort Code: 99-99-99)";
+                return false;
             }
 
-            return false;
+            return true;
         }
 
         private bool IsNatureOfIncidentCorrect(string natureOfIncident)
@@ -73,6 +79,7 @@ namespace Napier_Bank_Messaging.Messages
             SirList sirList = new SirList();
             if (natureOfIncident.Substring(0, 18) != "Nature of Incident")
             {
+                MessageBody = "Sorry there was an error with your message body, your Nature of Incident was formatted wrong (e.g Nature of Incident: Theft)";
                 return false;
             }
 
@@ -84,12 +91,19 @@ namespace Napier_Bank_Messaging.Messages
                 }
             }
 
+            MessageBody = "Sorry there was an error with your message body, your Nature of Incident was formatted wrong (e.g Nature of Incident: Theft)";
             return false;
         }
 
-        private static bool IsCharacterLengthCorrect(string body)
+        private bool IsCharacterLengthCorrect(string body)
         {
-            return body.Length > MaximumEmailCharacters ? false : true;
+            if (body.Length > MaximumEmailCharacters)
+            {
+                MessageBody = "Sorry there was an error with your message body, your message must be no more than " + MaximumEmailCharacters +  " characters long";
+                return false;
+            }
+
+            return true;
         }
     }
 }

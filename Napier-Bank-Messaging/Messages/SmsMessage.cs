@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Napier_Bank_Messaging.Tools;
 
 namespace Napier_Bank_Messaging.Messages
@@ -50,7 +46,7 @@ namespace Napier_Bank_Messaging.Messages
         {
             if (body.Length > MaximumSMSCharacters)
             {
-                MessageBody = "Sorry there was an error with your message body, your message must be no more than 140 characters long";
+                MessageBody = "Sorry there was an error with your message body, your message must be no more than " + MaximumSMSCharacters + " characters long";
                 return false;
             }
             

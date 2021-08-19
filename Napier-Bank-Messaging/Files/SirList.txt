@@ -1,22 +1,12 @@
-﻿Subject => www
-SIR => Sort Code: 99-99-99
-SIR => Sort Code: 99-99-99
-SIR => Sort Code: 99-99-99
-Subject => www
-Subject => www
-SIR => Sort Code:
-Sort Code: => Nature of Incident:
-Sort Code: => Nature of Incident:
-Sort Code: => Nature of Incident:
-Sort Code: => Nature of Incident:
-Sort Code: => Nature of Incident:
-Sort Code: => Nature of Incident:
-Sort Code: => Nature of Incident:
-Sort Code: 99-99-99 => Nature of Incident: Theft
-Sort Code: 99-99-99 => Nature of Incident: Theft
-Sort Code: 99-99-99 => Nature of Incident: Theft
-Sort Code: 99-99-99 => Nature of Incident: Theft
-Sort Code: 99-99-99 => Nature of Incident: Raid
-Sort Code: 00-00-00 => Nature of Incident: Theft
-Sort Code: 99-99-99 => Nature of Incident: Raid
-Sort Code: 99-99-99 => Nature of Incident: Theft
+﻿andrew@test.com
+Sort Code: 99
+Nature of Incident: Theft
+andrew@test.com
+Sort Code: 99
+Nature of Incident: Theft
+andrew@test.com
+Sort Code: 99
+Nature of Incident: Theft
+andrew@test.com
+Sort Code: 99-99-99
+Nature of Incident: Theft

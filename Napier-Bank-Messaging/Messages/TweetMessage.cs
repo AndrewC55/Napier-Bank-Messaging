@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Napier_Bank_Messaging.Tools;
 
 namespace Napier_Bank_Messaging.Messages
@@ -18,8 +14,8 @@ namespace Napier_Bank_Messaging.Messages
             MentionsList mentionsList = new MentionsList();
             HashtagList hashtagList = new HashtagList();
 
-            mentionsList.WriteToMentionsList(GetFormattedListBody(body));
-            hashtagList.WriteToHashtagsList(GetFormattedListBody(body));
+            mentionsList.WriteToMentionsList(header, GetFormattedListBody(body));
+            hashtagList.WriteToHashtagsList(header, GetFormattedListBody(body));
 
             MessageHeader = header;
             MessageBody = textSpeakSanitiser.Sanatise(GetFormattedListBody(body));
@@ -47,7 +43,7 @@ namespace Napier_Bank_Messaging.Messages
         {
             if (body.Length > MaximumTweetCharacters)
             {
-                MessageBody = "Sorry there was an error with your message body, your message must be no more than 140 characters long";
+                MessageBody = "Sorry there was an error with your message body, your message must be no more than " + MaximumTweetCharacters + " characters long";
                 return false;
             }
 

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 
 namespace Napier_Bank_Messaging.Tools
@@ -25,9 +23,9 @@ namespace Napier_Bank_Messaging.Tools
             return allValues;
         }
 
-        public void WriteToSirList(string sortCode, string natureOfIncident)
+        public void WriteToSirList(string header, string sortCode, string natureOfIncident)
         {
-            File.AppendAllText(SirFilePath, sortCode + " => " + natureOfIncident + "\n");
+            File.AppendAllText(SirFilePath, header + "\n" + sortCode + "\n" + natureOfIncident + "\n");
         }
     }
 }
