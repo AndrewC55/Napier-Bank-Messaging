@@ -26,7 +26,7 @@ namespace Napier_Bank_Messaging
             foreach (string value in values)
             {
                 // redisplay content of label with new values
-                lblDisplay.Content = "\n" + lblDisplay.Content + value;
+                lblDisplay.Content = lblDisplay.Content + value + "\n";
             }
         }
     }
