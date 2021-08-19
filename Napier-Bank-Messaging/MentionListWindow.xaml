@@ -18,6 +18,6 @@
         </Grid.ColumnDefinitions>
 
         <Label>NAPIER BANK MESSENGER: MENTIONS LIST</Label>
-        <Label x:Name="lblDisplay"></Label>
+        <Label x:Name="lblDisplay" Margin="0,20,20,20"></Label>
     </Grid>
 </Window>

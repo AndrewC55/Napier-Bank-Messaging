@@ -16,11 +16,12 @@ namespace Napier_Bank_Messaging.Test
         {
             List<string> body = new List<string>();
             MentionsList mentionsList = new MentionsList();
+            string header = "T123456789";
             body.Add("@andrew");
             body.Add("add @test");
 
-            mentionsList.WriteToMentionsList(body);
-            Assert.AreEqual(File.ReadLines(FilePath).Last(), "@test");
+            mentionsList.WriteToMentionsList(header, body);
+            Assert.AreEqual(File.ReadLines(FilePath).Last(), "T123456789: @test");
         }
     }
 }

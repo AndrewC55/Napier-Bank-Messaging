@@ -16,11 +16,12 @@ namespace Napier_Bank_Messaging.Test
         {
             List<string> body = new List<string>();
             HashtagList hashtagList = new HashtagList();
+            string header = "T123456789";
             body.Add("@andrew");
             body.Add("add #test");
 
-            hashtagList.WriteToHashtagsList(body);
-            Assert.AreEqual(File.ReadLines(FilePath).Last(), "#test");
+            hashtagList.WriteToHashtagsList(header, body);
+            Assert.AreEqual(File.ReadLines(FilePath).Last(), "T123456789: #test");
         }
     }
 }

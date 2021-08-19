@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Napier_Bank_Messaging.Tools;
 using Napier_Bank_Messaging.Enum;
 
@@ -30,9 +31,16 @@ namespace Napier_Bank_Messaging.Messages
         {
             // get list of body with sections separated by enters
             List<string> listBody = GetFormattedListBody(body);
-            // return boolean value of if sender and body are correct
-            return IsSenderCorrect(listBody[0]) && IsCharacterLengthCorrect(listBody[1]);
-        }
+            try
+            {
+                // return boolean value of if sender and body are correct
+                return IsSenderCorrect(listBody[0]) && IsCharacterLengthCorrect(listBody[1]);
+            } catch (ArgumentOutOfRangeException)
+            {
+                MessageBody = "Sorry format of email is wrong, please try again";
+                return false;
+            }
+}
 
         private bool IsSenderCorrect(string sender)
         {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Napier_Bank_Messaging.Tools;
 using Napier_Bank_Messaging.Enum;
@@ -33,11 +34,18 @@ namespace Napier_Bank_Messaging.Messages
         public override bool FormatBody(string body)
         {
             List<string> listBody = GetFormattedListBody(body);
-            if (IsEmailSir(listBody[1]) && listBody.Count == 5)
+            try
             {
-                return IsSenderCorrect(listBody[0]) && IsSubjectLengthCorrect(listBody[1]) && IsSortCodeCorrect(listBody[2]) && IsNatureOfIncidentCorrect(listBody[3]) && IsCharacterLengthCorrect(listBody[4]);
+                if (IsEmailSir(listBody[1]) && listBody.Count == 5)
+                {
+                    return IsSenderCorrect(listBody[0]) && IsSubjectLengthCorrect(listBody[1]) && IsSortCodeCorrect(listBody[2]) && IsNatureOfIncidentCorrect(listBody[3]) && IsCharacterLengthCorrect(listBody[4]);
+                }
+                return IsSenderCorrect(listBody[0]) && IsSubjectLengthCorrect(listBody[1]) && IsCharacterLengthCorrect(listBody[2]);
+            } catch (ArgumentOutOfRangeException)
+            {
+                MessageBody = "Sorry format of email is wrong, please try again";
+                return false;
             }
-            return IsSenderCorrect(listBody[0]) && IsSubjectLengthCorrect(listBody[1]) && IsCharacterLengthCorrect(listBody[2]);
         }
 
         // fucntion to check if email is sir
