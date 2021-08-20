@@ -30,7 +30,7 @@ namespace Napier_Bank_Messaging.Test
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-            Assert.IsFalse(message.Format(body));
+            Assert.IsFalse(message.FormatBody(body));
         }
 
         [TestMethod]
@@ -41,7 +41,7 @@ namespace Napier_Bank_Messaging.Test
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-            Assert.IsFalse(message.Format(body));
+            Assert.IsFalse(message.FormatBody(body));
         }
 
         [TestMethod]
@@ -51,7 +51,7 @@ namespace Napier_Bank_Messaging.Test
             string body = "12345678911\n" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-            Assert.IsFalse(message.Format(body));
+            Assert.IsFalse(message.FormatBody(body));
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Napier_Bank_Messaging"
         mc:Ignorable="d"
-        Title="MentionListWindow" Height="450" Width="800">
+        Title="MentionListWindow" Height="450" Width="450">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -18,6 +18,6 @@
         </Grid.ColumnDefinitions>
 
         <Label>NAPIER BANK MESSENGER: MENTIONS LIST</Label>
-        <Label x:Name="lblDisplay"></Label>
+        <Label x:Name="lblDisplay" Margin="0,20,20,20"></Label>
     </Grid>
 </Window>

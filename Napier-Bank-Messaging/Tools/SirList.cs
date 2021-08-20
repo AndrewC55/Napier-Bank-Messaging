@@ -1,33 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.IO;
+using Napier_Bank_Messaging.Enum;
 
 namespace Napier_Bank_Messaging.Tools
 {
     public class SirList
     {
-        private const string IncidentFilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\NatureOfIncidentList.txt";
-        private const string SirFilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\SirList.txt";
-
+        // function to get incidents
         public List<string> GetNatureOfIncidentsValues()
         {
-            string[] values = File.ReadAllLines(IncidentFilePath);
+            // read all lines from incidents list
+            string[] values = File.ReadAllLines(FilePathEnum.IncidentFilePath);
+            // create a string list to store values of list
             List<string> allValues = new List<string>();
 
+            // foreach through array and add to list
             foreach (string value in values)
             {
                 allValues.Add(value);
             }
 
+            // return list
             return allValues;
         }
 
-        public void WriteToSirList(string sortCode, string natureOfIncident)
+        // function to write store sir list
+        public void WriteToSirList(string header, string sortCode, string natureOfIncident)
         {
-            File.AppendAllText(SirFilePath, sortCode + " => " + natureOfIncident + "\n");
+            // write sir sort code and nature of incident to file
+            File.AppendAllText(FilePathEnum.SirListFilePath, header + ": " + sortCode + ", " + natureOfIncident + "\n");
         }
     }
 }

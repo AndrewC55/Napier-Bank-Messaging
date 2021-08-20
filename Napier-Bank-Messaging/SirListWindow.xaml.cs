@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using System.IO;
+using Napier_Bank_Messaging.Enum;
 
 namespace Napier_Bank_Messaging
 {
@@ -20,23 +9,28 @@ namespace Napier_Bank_Messaging
     /// </summary>
     public partial class SirListWindow : Window
     {
-
-        private const string SirFilePath = "C:\\Development\\Napier-Bank-Messaging\\Napier-Bank-Messaging\\Files\\SirList.txt";
-
         public SirListWindow()
         {
+            // initialize window
             InitializeComponent();
+            // call function to display all sirs
             DisplaySirReport();
         }
 
+        // function to redisplay all sirs
         private void DisplaySirReport()
         {
-            string[] values = File.ReadAllLines(SirFilePath);
-            lblDisplay.Content = "\n";
+            // read all files and store them in a string array
+            string[] values = File.ReadAllLines(FilePathEnum.SirListFilePath);
+            // foreach through string array
             foreach (string value in values)
             {
+                // redisplay content of label with new values
                 lblDisplay.Content = lblDisplay.Content + value + "\n";
             }
+
+            // clear file for next use
+            File.WriteAllText(FilePathEnum.SirListFilePath, string.Empty);
         }
     }
 }

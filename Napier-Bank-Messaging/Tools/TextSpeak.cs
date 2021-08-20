@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Napier_Bank_Messaging.Tools
+﻿namespace Napier_Bank_Messaging.Tools
 {
     public class TextSpeak
     {
+        // create private class variables
         private string _abbreviation, _phrase;
 
+        // getter and setter for abbreviation
         public string Abbreviation
         {
             get => _abbreviation;
             set => _abbreviation = value;
         }
 
+        // getter and setter for phrase
         public string Phrase
         {
             get => _phrase;
